@@ -1,3 +1,3 @@
-Ermolaev Dmitriy,0
-Maksim Vinogorov,1
-Mikhail Vilyukov,2
+Ilya Ivanov,0
+Mikhail Vilyukov,1
+Valera Yambarshev,2
