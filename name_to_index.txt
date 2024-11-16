@@ -1,3 +1,0 @@
-Ilya Ivanov,0
-Mikhail Vilyukov,1
-Valera Yambarshev,2
