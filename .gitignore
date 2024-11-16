@@ -1,2 +1,3 @@
 .venv/
 dataSet/
+model.h5
