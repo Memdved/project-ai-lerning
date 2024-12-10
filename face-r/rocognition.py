@@ -52,4 +52,3 @@ while True:
 # освобождение ресурсов
 cap.release()
 cv2.destroyAllWindows()
-
