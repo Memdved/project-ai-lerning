@@ -4,7 +4,7 @@ import tensorflow as tf
 from keras.models import load_model
 
 # загрузка модели
-model = load_model('model.h5')
+model = load_model('face-r/model.h5')
 
 # Загрузка каскада Хаара для обнаружения лиц
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
