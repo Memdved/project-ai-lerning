@@ -1,3 +1,4 @@
+# src/track_generator.py
 import pygame
 import json
 import os

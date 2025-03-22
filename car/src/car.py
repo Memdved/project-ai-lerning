@@ -1,6 +1,9 @@
+
+# src/car.py
 import pygame as pg
 import abc
 import math
+import random
 
 
 class BaseCar(abc.ABC):
@@ -39,6 +42,7 @@ class Car(BaseCar):
         self.velocity: float = 0
         self.rotation_speed_factor = 0.15 * self.size[0] / self.size[1]
         self.update_lines()
+        self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def update_lines(self):
         self.lines: list = [
@@ -101,9 +105,11 @@ class Car(BaseCar):
         self.update_lines()
 
     def update(self, keys: tuple, dt: float) -> None:
-        if keys[pg.K_w]:
+        w_pressed, s_pressed, a_pressed, d_pressed = keys #unpack tuple
+
+        if w_pressed:
             self.move(1, dt)
-        elif keys[pg.K_s]:
+        elif s_pressed:
             self.move(-1, dt)
         else:
             if self.velocity > 0:
@@ -111,11 +117,11 @@ class Car(BaseCar):
             elif self.velocity < 0:
                 self.move(1, dt)
 
-        if keys[pg.K_a]:
+        if a_pressed:
             rotation_speed = abs(self.velocity) * self.rotation_speed_factor
             self.angle -= rotation_speed * dt
             self.update_lines()
-        if keys[pg.K_d]:
+        if d_pressed:
             rotation_speed = abs(self.velocity) * self.rotation_speed_factor
             self.angle += rotation_speed * dt
             self.update_lines()
@@ -123,14 +129,13 @@ class Car(BaseCar):
 
     def get_center(self) -> tuple:
         """Метод для получения центра машины."""
-        return self.__lines_intersect(
-            (self.lines[0][0], self.lines[2][1]), (self.lines[0][1], self.lines[1][1])
-        )
+        return (self.pos[0] + self.size[0]/2, self.pos[1] + self.size[1]/2)
 
     def show(self, screen: pg.Surface, debug: bool) -> None:
         line: list
         for line in self.lines:
-            pg.draw.line(screen, (255, 255, 255), line[0], line[1], width=5)
+            pg.draw.line(screen, self.color, line[0], line[1], width=5)
+
 
     def __lines_intersect(
         self,
